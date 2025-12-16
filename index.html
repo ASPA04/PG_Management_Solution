@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGMS - ASPA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🏠 PG Manager</h1>
+        <p>ASPA</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><button class="nav-btn active" onclick="switchSection('dashboard')">📊 Dashboard</button></li>
+            <li><button class="nav-btn" onclick="switchSection('tenants')">👥 Tenants</button></li>
+            <li><button class="nav-btn" onclick="switchSection('rent')">💰 Rent Tracking</button></li>
+            <li><button class="nav-btn" onclick="switchSection('notice')">📢 Notice Board</button></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Dashboard -->
+        <section id="dashboard" class="section active">
+            <h2 class="section-title">Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div>
+                        <div class="stat-number" id="totalTenants">0</div>
+                        <div class="stat-label">Total Tenants</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏠</div>
+                    <div>
+                        <div class="stat-number" id="occupiedRooms">0</div>
+                        <div class="stat-label">Occupied Rooms</div>
+                    </div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-icon">✅</div>
+                    <div>
+                        <div class="stat-number" id="paidRent">0</div>
+                        <div class="stat-label">Rent Paid (This Month)</div>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon">⏳</div>
+                    <div>
+                        <div class="stat-number" id="pendingRent">0</div>
+                        <div class="stat-label">Rent Pending</div>
+                    </div>
+                </div>
+            </div>
+            <div class="quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="switchSection('tenants')">➕ Add Tenant</button>
+                    <button class="btn btn-secondary" onclick="switchSection('rent')">💳 Record Payment</button>
+                    <button class="btn btn-secondary" onclick="switchSection('notice')">📝 Post Notice</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tenants -->
+        <section id="tenants" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Tenant Records</h2>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <button class="btn btn-secondary btn-small" onclick="showArchiveModal()">📁 View Archive</button>
+                    <button class="btn btn-primary" onclick="showAddTenantModal()">➕ Add Tenant</button>
+                </div>
+            </div>
+            <div id="tenantsList" class="tenants-grid">
+                <div class="empty-state">
+                    <p>Loading tenants...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rent Tracking -->
+        <section id="rent" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Rent Tracking</h2>
+            </div>
+            
+            <div class="filters">
+                <select id="monthFilter" class="filter-select" onchange="filterRentRecords()">
+                    <option value="">All Months</option>
+                </select>
+                <select id="statusFilter" class="filter-select" onchange="filterRentRecords()">
+                    <option value="">All Status</option>
+                    <option value="paid">Paid Only</option>
+                    <option value="unpaid">Unpaid Only</option>
+                </select>
+            </div>
+            
+            <div id="rentTableContainer">
+                <div class="empty-state">
+                    <p>Loading rent records...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notice Board -->
+        <section id="notice" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Notice Board</h2>
+                <button class="btn btn-primary" onclick="showAddNoticeModal()">📝 Add Notice</button>
+            </div>
+            
+            <div class="notice-filters">
+                <button class="filter-btn active" data-category="all" onclick="filterNotices('all')">All</button>
+                <button class="filter-btn" data-category="maintenance" onclick="filterNotices('maintenance')">🔧 Maintenance</button>
+                <button class="filter-btn" data-category="complaint" onclick="filterNotices('complaint')">⚠️ Complaints</button>
+                <button class="filter-btn" data-category="update" onclick="filterNotices('update')">📢 Updates</button>
+                <button class="filter-btn" data-category="announcement" onclick="filterNotices('announcement')">📣 Announcements</button>
+            </div>
+            
+            <div id="noticesList" class="notices-grid">
+                <div class="empty-state">
+                    <p>Loading notices...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
