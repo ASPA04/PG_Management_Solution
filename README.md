@@ -1,6 +1,6 @@
 # PG Management System
 
-Full-stack MVP for managing PG tenants, rent tracking, and notices. Data is persisted in MongoDB. Includes soft-delete archive and payment proof links.
+Full-stack MVP for managing PG tenants, rent tracking, and notices. Data is persisted in MongoDB. Includes soft-delete archive and payment proof links. 
 
 ## Prerequisites
 - Node.js 16+ and npm
@@ -54,3 +54,4 @@ routes/         # tenants, notices
 - MongoDB connection error: ensure MongoDB running / Atlas URI correct & IP whitelisted.
 - Port in use: change `PORT` in `.env`.
 
+(Vibe Coded)
